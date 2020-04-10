@@ -1,0 +1,19 @@
+{
+  "name": "@task-app/server",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --env.mode=dev",
+    "test": "jest --coverage --forceExit"
+  },
+  "devDependencies": {
+    "@task-app/babel": "*",
+    "auto-reload-webpack-plugin": "^1.1.0",
+    "babel-loader": "^8.1.0",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-merge": "^4.2.2",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
