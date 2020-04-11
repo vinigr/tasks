@@ -1,4 +1,4 @@
-import { GraphQLObjectType, GraphQLString, GraphQLBoolean, GraphQLNonNull } from 'graphql';
+import { GraphQLObjectType, GraphQLString, GraphQLBoolean, GraphQLNonNull, GraphQLID } from 'graphql';
 import { globalIdField } from 'graphql-relay';
 
 import { connectionDefinitions } from '../../connection/CustomConnectionType';
@@ -35,5 +35,5 @@ export default UserType;
 
 export const UserConnection = connectionDefinitions({
   name: 'User',
-  nodeType: GraphQLNonNull(UserType),
+  nodeType: UserType,
 });
