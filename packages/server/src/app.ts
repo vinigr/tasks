@@ -16,8 +16,8 @@ import graphqlHttp, { OptionsData } from 'koa-graphql';
 import * as loaders from './loader';
 
 import { getUser } from './auth';
-import { Loaders } from './interface/NodeInterface';
 
+import { getDataloaders } from './helper';
 import { schema } from './schema';
 
 const app = new Koa<any, Context>();
@@ -58,18 +58,16 @@ if (process.env.NODE_ENV !== 'test') {
   app.use(logger());
 }
 
-const graphqlSettingsPerReq = async (req: Request): Promise<OptionsData> => {
+// Middleware to get dataloaders
+app.use((ctx, next) => {
+  ctx.dataloaders = getDataloaders(loaders);
+  return next();
+});
+
+const graphqlSettingsPerReq = async (req: Request, _, koaContext: unknown): Promise<OptionsData> => {
   const { user } = await getUser(req.header.authorization);
 
-  const AllLoaders: Loaders = loaders;
-
-  const dataloaders = Object.keys(AllLoaders).reduce(
-    (acc, loaderKey) => ({
-      ...acc,
-      [loaderKey]: AllLoaders[loaderKey].getLoader(),
-    }),
-    {},
-  );
+  const { dataloaders } = koaContext;
 
   return {
     graphiql: process.env.NODE_ENV !== 'production',

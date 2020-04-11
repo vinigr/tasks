@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserType queries should query an user 1`] = `
+Object {
+  "data": Object {
+    "user": Object {
+      "email": "EMPTY",
+      "id": "FROZEN-ID",
+      "name": "Normal user 1",
+    },
+  },
+}
+`;
