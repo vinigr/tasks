@@ -1,9 +1,9 @@
-import { koaPlayground } from 'graphql-playground-middleware';
-
 import Koa, { Request, Context } from 'koa';
 import bodyParser from 'koa-bodyparser';
 import convert from 'koa-convert';
 import cors from 'koa-cors';
+
+import koaPlayground from 'graphql-playground-middleware-koa';
 
 import graphqlBatchHttpWrapper from 'koa-graphql-batch';
 
@@ -35,8 +35,6 @@ if (process.env.NODE_ENV === 'production') {
     return next();
   });
 }
-
-app.use(bodyParser());
 
 app.use(async (ctx, next) => {
   try {

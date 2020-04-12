@@ -9,6 +9,7 @@ import { GRAPHQL_PORT } from './common/config';
 import connectDatabase from './common/database';
 
 import app from './app';
+import { schema } from './schema';
 
 (async () => {
   try {
@@ -31,11 +32,7 @@ import app from './app';
   SubscriptionServer.create(
     {
       // eslint-disable-next-line no-console
-      onConnect: async (connectionParams) => {
-        const { user } = getUserSubscription(connectionParams.Authorization);
-
-        return { user };
-      },
+      onConnect: (connectionParams) => console.info('Client subscription connected!', connectionParams),
       // eslint-disable-next-line no-console
       onDisconnect: () => console.info('Client subscription disconnected'),
       execute,

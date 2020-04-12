@@ -1,10 +1,11 @@
-import { GraphQLObjectType, GraphQLNonNull, GraphQLID } from 'graphql';
-import { fromGlobalId } from 'graphql-relay';
+import { GraphQLObjectType, GraphQLNonNull, GraphQLID, GraphQLString } from 'graphql';
+import { fromGlobalId, connectionArgs } from 'graphql-relay';
 
 import UserType from '../modules/user/UserType';
+import TaskType, { TaskConnection } from '../modules/task/TaskType';
 
 import { nodeField } from '../interface/NodeInterface';
-import { UserLoader } from '../loader';
+import { UserLoader, TaskLoader } from '../loader';
 
 export default new GraphQLObjectType({
   name: 'Query',
@@ -26,6 +27,28 @@ export default new GraphQLObjectType({
         const { id } = fromGlobalId(args.id);
         return UserLoader.load(context, id);
       },
+    },
+    task: {
+      type: TaskType,
+      args: {
+        id: {
+          type: GraphQLNonNull(GraphQLID),
+        },
+      },
+      resolve: (_, args, context) => {
+        const { id } = fromGlobalId(args.id);
+        return TaskLoader.load(context, id);
+      },
+    },
+    tasks: {
+      type: TaskConnection.connectionType,
+      args: {
+        ...connectionArgs,
+        search: {
+          type: GraphQLString,
+        },
+      },
+      resolve: (_, args, context) => TaskLoader.loadTasks(context, args),
     },
   }),
 });
