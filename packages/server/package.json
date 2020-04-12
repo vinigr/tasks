@@ -4,8 +4,10 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
+    "copy-to-package": "babel-node --extensions \".es6,.js,.es,.jsx,.mjs,.ts,.tsx\" scripts/copySchemaToPackage.js",
     "start": "webpack --env.mode=dev",
-    "test": "jest --coverage --forceExit"
+    "test": "jest --coverage --forceExit",
+    "update-schema": "babel-node --extensions \".es6,.js,.es,.jsx,.mjs,.ts,.tsx\" scripts/updateSchema.js && yarn copy-to-package"
   },
   "dependencies": {
     "@entria/graphql-mongoose-loader": "^4.3.0",
