@@ -19,8 +19,8 @@ afterAll(disconnectMongoose);
 it('should not edit task if user not authenticate', async () => {
   // language graphQL
   const query = `
-    mutation M($id: ID!, $title: String!, $details: String) {
-      TaskUpdate(input: {id: $id, title: $title, details: $details}) {
+    mutation M($id: ID!, $title: String!, $description: String) {
+      TaskUpdate(input: {id: $id, title: $title, description: $description}) {
         task {
           node {
             title
@@ -50,8 +50,8 @@ it('should not edit task if it not found', async () => {
 
   // language graphQL
   const query = `
-    mutation M($id: ID!, $title: String!, $details: String) {
-      TaskUpdate(input: {id: $id, title: $title, details: $details}) {
+    mutation M($id: ID!, $title: String!, $description: String) {
+      TaskUpdate(input: {id: $id, title: $title, description: $description}) {
         task {
           node {
             title
@@ -82,8 +82,8 @@ it('should not edit task if user not author', async () => {
 
   // language graphQL
   const query = `
-    mutation M($id: ID!, $title: String!, $details: String) {
-      TaskUpdate(input: {id: $id, title: $title, details: $details}) {
+    mutation M($id: ID!, $title: String!, $description: String) {
+      TaskUpdate(input: {id: $id, title: $title, description: $description}) {
         task {
           node {
             title
@@ -113,8 +113,8 @@ it('should edit task', async () => {
 
   // language graphQL
   const query = `
-    mutation M($id: ID!, $title: String!, $details: String) {
-      TaskUpdate(input: {id: $id, title: $title, details: $details}) {
+    mutation M($id: ID!, $title: String!, $description: String) {
+      TaskUpdate(input: {id: $id, title: $title, description: $description}) {
         task {
           node {
             title

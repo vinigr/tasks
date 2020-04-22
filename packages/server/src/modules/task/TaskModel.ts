@@ -6,7 +6,7 @@ const schema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    details: {
+    description: {
       type: String,
     },
     author: {
@@ -26,7 +26,7 @@ const schema = new mongoose.Schema(
 
 export interface ITask extends Document {
   title: string;
-  details: string | null;
+  description: string | null;
   author: mongoose.Schema.Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;

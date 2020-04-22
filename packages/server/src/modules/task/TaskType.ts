@@ -21,9 +21,9 @@ const TaskType = registerType(
         type: GraphQLNonNull(GraphQLString),
         resolve: (task) => task.title,
       },
-      details: {
+      description: {
         type: GraphQLString,
-        resolve: (task) => task.details,
+        resolve: (task) => task.description,
       },
       author: {
         type: UserType,

@@ -16,7 +16,7 @@ export default class Task {
 
   title: string;
 
-  details: string | null | undefined;
+  description: string | null | undefined;
 
   author: mongoose.Schema.Types.ObjectId | null;
 
@@ -30,7 +30,7 @@ export default class Task {
     this.createdAt = data.createdAt;
     this.updatedAt = data.updatedAt;
     this.title = data.title;
-    this.details = data.details;
+    this.description = data.description;
     this.author = data.author;
   }
 }

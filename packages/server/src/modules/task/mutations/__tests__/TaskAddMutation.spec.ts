@@ -18,8 +18,8 @@ afterAll(disconnectMongoose);
 it('should not create task if user not authenticate', async () => {
   // language graphQL
   const query = `
-    mutation M($title: String!, $details: String) {
-      TaskAdd(input: {title: $title, details: $details}) {
+    mutation M($title: String!, $description: String) {
+      TaskAdd(input: {title: $title, description: $description}) {
         task {
           node {
             title
@@ -39,7 +39,7 @@ it('should not create task if user not authenticate', async () => {
   const result = await graphql(schema, query, rootQuery, context, variables);
 
   expect(result.errors).toBeUndefined();
-  expect(result.data.TaskAdd.error).toBe('User not authenticated');
+  expect(result.data!.TaskAdd.error).toBe('User not authenticated');
 });
 
 it('should create task', async () => {
@@ -47,8 +47,8 @@ it('should create task', async () => {
 
   // language graphQL
   const query = `
-    mutation M($title: String!, $details: String) {
-      TaskAdd(input: {title: $title, details: $details}) {
+    mutation M($title: String!, $description: String) {
+      TaskAdd(input: {title: $title, description: $description}) {
         task {
           node {
             title
@@ -67,5 +67,5 @@ it('should create task', async () => {
   const result = await graphql(schema, query, rootQuery, context, variables);
 
   expect(result.errors).toBeUndefined();
-  expect(result.data.TaskAdd.task.node.title).toBe('test');
+  expect(result.data!.TaskAdd.task.node.title).toBe('test');
 });

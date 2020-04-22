@@ -14,7 +14,7 @@ import TaskModel from '../TaskModel';
 interface TaskUpdateArgs {
   id: Types.ObjectId;
   title: string;
-  details: string;
+  description: string;
 }
 
 const mutation = mutationWithClientMutationId({
@@ -26,11 +26,11 @@ const mutation = mutationWithClientMutationId({
     title: {
       type: GraphQLNonNull(GraphQLString),
     },
-    details: {
+    description: {
       type: GraphQLString,
     },
   },
-  mutateAndGetPayload: async ({ id, title, details }: TaskUpdateArgs, { user }: GraphQLContext) => {
+  mutateAndGetPayload: async ({ id, title, description }: TaskUpdateArgs, { user }: GraphQLContext) => {
     if (!user) {
       return {
         error: 'User not authenticated',
@@ -52,7 +52,7 @@ const mutation = mutationWithClientMutationId({
     }
 
     task.title = title;
-    task.details = details;
+    task.description = description;
 
     task.save();
 

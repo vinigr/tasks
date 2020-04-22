@@ -33,7 +33,7 @@ type Task implements Node {
   id: ID!
   _id: String
   title: String!
-  details: String
+  description: String
   author: User
   createdAt: String
   updatedAt: String
@@ -130,7 +130,7 @@ type TaskAddPayload {
 
 input TaskAddInput {
   title: String!
-  details: String
+  description: String
   clientMutationId: String
 }
 
@@ -143,7 +143,7 @@ type TaskUpdatePayload {
 input TaskUpdateInput {
   id: ID!
   title: String!
-  details: String
+  description: String
   clientMutationId: String
 }
 
@@ -161,6 +161,7 @@ input TaskDeleteInput {
 type Subscription {
   TaskAdded: TaskAddedPayload
   TaskUpdated: TaskUpdatedPayload
+  TaskDeleted: TaskDeletedPayload
 }
 
 type TaskAddedPayload {
@@ -169,4 +170,8 @@ type TaskAddedPayload {
 
 type TaskUpdatedPayload {
   taskEdge: TaskEdge
+}
+
+type TaskDeletedPayload {
+  id: ID
 }

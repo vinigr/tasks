@@ -32,7 +32,7 @@ it('should query all tasks', async () => {
               ... on Task {
                 _id
                 title
-                details
+                description
               }
             }
           }
@@ -48,7 +48,7 @@ it('should query all tasks', async () => {
   const { data } = result;
 
   expect(result.errors).toBeUndefined();
-  expect(data.tasks.edges).toHaveLength(2);
+  expect(data!.tasks.edges).toHaveLength(2);
 });
 
 it('should search tasks by title', async () => {
@@ -65,7 +65,7 @@ it('should search tasks by title', async () => {
               ... on Task {
                 _id
                 title
-                details
+                description
               }
             }
           }
@@ -83,8 +83,8 @@ it('should search tasks by title', async () => {
   const { data } = result;
 
   expect(result.errors).toBeUndefined();
-  expect(data.tasks.edges).toHaveLength(1);
-  expect(data.tasks.edges[0].node._id).toBe(task._id.toString());
+  expect(data!.tasks.edges).toHaveLength(1);
+  expect(data!.tasks.edges[0].node._id).toBe(task._id.toString());
 });
 
 it('should query an task', async () => {
@@ -97,7 +97,7 @@ it('should query an task', async () => {
           id
           _id
           title
-          details
+          description
           author {
             name
           }
@@ -116,5 +116,5 @@ it('should query an task', async () => {
   const result = await graphql(schema, query, rootQuery, context, variables);
 
   expect(result.errors).toBeUndefined();
-  expect(result.data.task.title).toBe(task.title);
+  expect(result.data!.task.title).toBe(task.title);
 });
