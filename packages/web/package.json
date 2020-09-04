@@ -31,7 +31,7 @@
     "@types/node": "^12.0.0",
     "dayjs": "^1.8.24",
     "jwt-decode": "^2.2.0",
-    "react": "^0.0.0-experimental-e5d06e34b",
+    "react": "^16.13.1",
     "react-dom": "^0.0.0-experimental-e5d06e34b",
     "react-relay": "^0.0.0-experimental-8cc94ddc",
     "react-router": "^6.0.0-alpha.3",
